@@ -1,0 +1,99 @@
+添加自动编译流水线
+##################
+
+给编译服务器分配代码权限
+========================
+
+#. GltLab上打开项目页面, 左侧点击 ``Settings`` -> ``Members`` .
+
+    .. figure:: images/3.1.1.png
+       :align: center
+       :width: 100%
+
+#. 照图填写, 最后点击 ``Add to project`` .
+
+    .. figure:: images/3.1.2.png
+       :align: center
+       :width: 100%
+
+添加jenkins流水线
+=================
+
+.. note:: 每个仓库不同平台都需要单独添加流水线.
+
+#. 登录jenkins, 点击 ``GitLab仓库自动编译打包`` , 然后点击左侧的 ``新建任务``.
+
+    .. figure:: images/3.2.1.png
+       :align: center
+       :width: 100%
+
+#. 在上方输入流水线的名称, 格式为 ``gitlab.仓库路径.平台`` . 仓库路径为仓库在gitlab仓库地址中 ``/`` 替换为 ``.`` . 平台目前支持 ``ubuntu-16.04-amd64`` 和 ``ubuntu-20.04-arm64`` .
+
+    .. figure:: images/3.2.2.png
+       :align: center
+       :width: 100%
+
+#. 页面拉到最下方, 在里面添加从哪个项目复制配置信息, 最后点击 ``OK`` .
+
+    .. figure:: images/3.2.3.png
+       :align: center
+       :width: 100%
+
+    推荐的填写方式如下:
+
+        +-----------------------+------------------------------------------------------+
+        | 平台                  | 填写的内容                                           |
+        +=======================+======================================================+
+        | ubuntu-16.04-amd64    | gitlab.buildsys-test.helloworld.ubuntu-16.04-amd64   |
+        +-----------------------+------------------------------------------------------+
+        | ubuntu-18.04-arm64    | gitlab.buildsys-test.helloworld.ubuntu-18.04-arm64   |
+        +-----------------------+------------------------------------------------------+
+
+#. 修改仓库名.
+
+    .. figure:: images/3.2.4.png
+       :align: center
+       :width: 100%
+
+#. 如果该流水线需要在依赖被编译后触发编译, 则需要将选项 ``其他工程构建后触发`` 打勾, 然后填写被依赖的仓库对应的流水线.
+
+    .. figure:: images/3.2.5.png
+       :align: center
+       :width: 100%
+
+#. 把窗口拉到最下面, 修改仓库地址.
+
+    .. figure:: images/3.2.6.png
+       :align: center
+       :width: 100%
+
+#. 修改收件人地址.
+
+    .. figure:: images/3.2.7.png
+       :align: center
+       :width: 100%
+
+添加GitLab Webhook
+==================
+
+#. 打开GitLab的仓库页面, 左侧点击 ``Settings`` -> ``Intergrations`` , 然后照图填写信息.
+
+    .. figure:: images/3.3.1.png
+       :align: center
+       :width: 100%
+
+    Webhook url 和 secret token 可以在jenkins流水线的设置里找到.
+
+        .. figure:: images/3.3.2.png
+           :align: center
+           :width: 100%
+
+        .. figure:: images/3.3.3.png
+           :align: center
+           :width: 100%
+
+#. 填写完成后点击 ``Add webhook`` , 这样当 ``develop`` 分支发生修改后就会自动触发编译.
+
+    .. figure:: images/3.3.4.png
+       :align: center
+       :width: 100%

@@ -1,0 +1,232 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>3. 添加自动编译流水线 &#8212; how-to-use-git 1.0.2 文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="2. Git 工作流程" href="cp02.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="cp02.html" title="2. Git 工作流程"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">how-to-use-git 1.0.2 文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>3. 添加自动编译流水线<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.1. 给编译服务器分配代码权限<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">GltLab上打开项目页面, 左侧点击 <code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Members</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.1.1.png"><img alt="_images/3.1.1.png" src="_images/3.1.1.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">照图填写, 最后点击 <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">to</span> <span class="pre">project</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.1.2.png"><img alt="_images/3.1.2.png" src="_images/3.1.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="jenkins">
+<h2>3.2. 添加jenkins流水线<a class="headerlink" href="#jenkins" title="永久链接至标题">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">每个仓库不同平台都需要单独添加流水线.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">登录jenkins, 点击 <code class="docutils literal notranslate"><span class="pre">GitLab仓库自动编译打包</span></code> , 然后点击左侧的 <code class="docutils literal notranslate"><span class="pre">新建任务</span></code>.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.1.png"><img alt="_images/3.2.1.png" src="_images/3.2.1.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">在上方输入流水线的名称, 格式为 <code class="docutils literal notranslate"><span class="pre">gitlab.仓库路径.平台</span></code> . 仓库路径为仓库在gitlab仓库地址中 <code class="docutils literal notranslate"><span class="pre">/</span></code> 替换为 <code class="docutils literal notranslate"><span class="pre">.</span></code> . 平台目前支持 <code class="docutils literal notranslate"><span class="pre">ubuntu-16.04-amd64</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ubuntu-20.04-arm64</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.2.png"><img alt="_images/3.2.2.png" src="_images/3.2.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">页面拉到最下方, 在里面添加从哪个项目复制配置信息, 最后点击 <code class="docutils literal notranslate"><span class="pre">OK</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.3.png"><img alt="_images/3.2.3.png" src="_images/3.2.3.png" style="width: 100%;" /></a>
+</div>
+<p>推荐的填写方式如下:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">平台</th>
+<th class="head">填写的内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ubuntu-16.04-amd64</td>
+<td>gitlab.buildsys-test.helloworld.ubuntu-16.04-amd64</td>
+</tr>
+<tr class="row-odd"><td>ubuntu-18.04-arm64</td>
+<td>gitlab.buildsys-test.helloworld.ubuntu-18.04-arm64</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">修改仓库名.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.4.png"><img alt="_images/3.2.4.png" src="_images/3.2.4.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">如果该流水线需要在依赖被编译后触发编译, 则需要将选项 <code class="docutils literal notranslate"><span class="pre">其他工程构建后触发</span></code> 打勾, 然后填写被依赖的仓库对应的流水线.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.5.png"><img alt="_images/3.2.5.png" src="_images/3.2.5.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">把窗口拉到最下面, 修改仓库地址.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.6.png"><img alt="_images/3.2.6.png" src="_images/3.2.6.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">修改收件人地址.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.2.7.png"><img alt="_images/3.2.7.png" src="_images/3.2.7.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="gitlab-webhook">
+<h2>3.3. 添加GitLab Webhook<a class="headerlink" href="#gitlab-webhook" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">打开GitLab的仓库页面, 左侧点击 <code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Intergrations</span></code> , 然后照图填写信息.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.3.1.png"><img alt="_images/3.3.1.png" src="_images/3.3.1.png" style="width: 100%;" /></a>
+</div>
+<p>Webhook url 和 secret token 可以在jenkins流水线的设置里找到.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.3.2.png"><img alt="_images/3.3.2.png" src="_images/3.3.2.png" style="width: 100%;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.3.3.png"><img alt="_images/3.3.3.png" src="_images/3.3.3.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">填写完成后点击 <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">webhook</span></code> , 这样当 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 分支发生修改后就会自动触发编译.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/3.3.4.png"><img alt="_images/3.3.4.png" src="_images/3.3.4.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. 添加自动编译流水线</a><ul>
+<li><a class="reference internal" href="#id2">3.1. 给编译服务器分配代码权限</a></li>
+<li><a class="reference internal" href="#jenkins">3.2. 添加jenkins流水线</a></li>
+<li><a class="reference internal" href="#gitlab-webhook">3.3. 添加GitLab Webhook</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="cp02.html"
+                        title="上一章">2. <code class="docutils literal notranslate"><span class="pre">Git</span></code> 工作流程</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cp03.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="cp02.html" title="2. Git 工作流程"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">how-to-use-git 1.0.2 文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2021, waytous.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5 创建。
+    </div>
+  </body>
+</html>

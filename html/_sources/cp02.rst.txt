@@ -1,0 +1,89 @@
+``Git`` 工作流程
+################
+
+``Git`` 工作流程
+================
+
+``Git`` 的使用方式类似于这样一个过程:
+
+    .. figure:: images/2.5.png
+       :align: center
+       :width: 100%
+
+具体操作如下:
+
+    #. 首先, 建立一个工作分支.
+
+        工作分支可以从别人提的 ``Issue`` 来创建:
+
+            .. figure:: images/2.1.1.1.png
+               :align: center
+               :width: 100%
+
+        然后拉取并切换到工作分支.
+
+            .. figure:: images/2.1.1.2.png
+               :align: center
+               :width: 100%
+
+        也可以直接在本地创建并切换:
+
+            .. figure:: images/2.1.2.png
+               :align: center
+               :width: 100%
+
+    #. 如果源分支在当前分支创建后有过修改, 则当前分支再最终测试并合并回去之前应当合并原分支在之后的修改, 操作如下:
+
+        .. figure:: images/2.2.1.png
+           :align: center
+           :width: 100%
+
+        .. figure:: images/2.2.2.png
+           :align: center
+           :width: 100%
+
+    #. 当所有的修改和测试都完成并推送到服务器了, 登录gitlab网站, 提交合并请求.
+
+        #. 首先点击左侧 ``Repository`` -> ``Branches`` .
+
+            .. figure:: images/2.3.1.png
+               :align: center
+               :width: 100%
+
+        #. 然后点击想要合并的分支后面的 ``Merge request`` 按钮.
+
+            .. figure:: images/2.3.2.png
+               :align: center
+               :width: 100%
+
+        #. 接下来点击 ``Change branches`` , 然后选择目标分支.
+
+            .. figure:: images/2.3.3.png
+               :align: center
+               :width: 100%
+
+            .. figure:: images/2.3.4.png
+               :align: center
+               :width: 100%
+
+        #. 然后填写其他信息, 提交合并请求.
+
+            .. figure:: images/2.3.5.png
+               :align: center
+               :width: 100%
+
+        #. 最后通知仓库的 ``Owner`` 或者 ``Maintainer`` .
+
+    #. 仓库的 ``Owner`` 或者 ``Maintainer`` 在审核完请求合并的分支之后, 批准合并.
+
+        #. 首先点击左侧 ``Merge Requests`` .
+
+            .. figure:: images/2.4.1.png
+               :align: center
+               :width: 100%
+
+        #. 然后批准合并.
+
+            .. figure:: images/2.4.2.png
+               :align: center
+               :width: 100%

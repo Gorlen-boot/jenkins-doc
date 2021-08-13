@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2. Git 工作流程 &#8212; how-to-use-git 1.0.2 文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="3. 添加自动编译流水线" href="cp03.html" />
+    <link rel="prev" title="1. 将 develop 分支设为保护分支" href="cp01.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="cp03.html" title="3. 添加自动编译流水线"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="cp01.html" title="1. 将 develop 分支设为保护分支"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">how-to-use-git 1.0.2 文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="git">
+<h1>2. <code class="docutils literal notranslate"><span class="pre">Git</span></code> 工作流程<a class="headerlink" href="#git" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.1. <code class="docutils literal notranslate"><span class="pre">Git</span></code> 工作流程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Git</span></code> 的使用方式类似于这样一个过程:</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.5.png"><img alt="_images/2.5.png" src="_images/2.5.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+<p>具体操作如下:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">首先, 建立一个工作分支.</p>
+<blockquote>
+<div><p>工作分支可以从别人提的 <code class="docutils literal notranslate"><span class="pre">Issue</span></code> 来创建:</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.1.1.1.png"><img alt="_images/2.1.1.1.png" src="_images/2.1.1.1.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+<p>然后拉取并切换到工作分支.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.1.1.2.png"><img alt="_images/2.1.1.2.png" src="_images/2.1.1.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+<p>也可以直接在本地创建并切换:</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.1.2.png"><img alt="_images/2.1.2.png" src="_images/2.1.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">如果源分支在当前分支创建后有过修改, 则当前分支再最终测试并合并回去之前应当合并原分支在之后的修改, 操作如下:</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.2.1.png"><img alt="_images/2.2.1.png" src="_images/2.2.1.png" style="width: 100%;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.2.2.png"><img alt="_images/2.2.2.png" src="_images/2.2.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">当所有的修改和测试都完成并推送到服务器了, 登录gitlab网站, 提交合并请求.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">首先点击左侧 <code class="docutils literal notranslate"><span class="pre">Repository</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Branches</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.3.1.png"><img alt="_images/2.3.1.png" src="_images/2.3.1.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">然后点击想要合并的分支后面的 <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">request</span></code> 按钮.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.3.2.png"><img alt="_images/2.3.2.png" src="_images/2.3.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">接下来点击 <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">branches</span></code> , 然后选择目标分支.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.3.3.png"><img alt="_images/2.3.3.png" src="_images/2.3.3.png" style="width: 100%;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.3.4.png"><img alt="_images/2.3.4.png" src="_images/2.3.4.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">然后填写其他信息, 提交合并请求.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.3.5.png"><img alt="_images/2.3.5.png" src="_images/2.3.5.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">最后通知仓库的 <code class="docutils literal notranslate"><span class="pre">Owner</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">Maintainer</span></code> .</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">仓库的 <code class="docutils literal notranslate"><span class="pre">Owner</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">Maintainer</span></code> 在审核完请求合并的分支之后, 批准合并.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">首先点击左侧 <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">Requests</span></code> .</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.4.1.png"><img alt="_images/2.4.1.png" src="_images/2.4.1.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">然后批准合并.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/2.4.2.png"><img alt="_images/2.4.2.png" src="_images/2.4.2.png" style="width: 100%;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. <code class="docutils literal notranslate"><span class="pre">Git</span></code> 工作流程</a><ul>
+<li><a class="reference internal" href="#id1">2.1. <code class="docutils literal notranslate"><span class="pre">Git</span></code> 工作流程</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="cp01.html"
+                        title="上一章">1. 将 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 分支设为保护分支</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="cp03.html"
+                        title="下一章">3. 添加自动编译流水线</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cp02.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="cp03.html" title="3. 添加自动编译流水线"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="cp01.html" title="1. 将 develop 分支设为保护分支"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">how-to-use-git 1.0.2 文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2021, waytous.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5 创建。
+    </div>
+  </body>
+</html>
